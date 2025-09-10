@@ -2,6 +2,7 @@ package org.example;
 
 import data_payload.*;
 import io.restassured.RestAssured;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -39,6 +40,7 @@ public class TEST1 {
         String addresscheck=parsing.parse(updateaddress).getString("address");
         if(addresscheck.equalsIgnoreCase(newaddress))
             System.out.println("\n"+"Address updated and fetched are same");
+        Assert.assertEquals(addresscheck, newaddress);
 
 
         }
