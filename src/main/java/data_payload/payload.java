@@ -1,5 +1,7 @@
 package data_payload;
 
+import org.hamcrest.Matcher;
+
 public class payload {
 
     public static String request(){
@@ -26,5 +28,11 @@ public class payload {
                 "\"address\":\"70 winter walk, USA\",\n" +
                 "\"key\":\"qaclick123\"\n" +
                 "}";
+    }
+    public static String placeID(String placeid){
+        return "{\n" +
+                "\n" +
+                "    \"place_id\":\""+placeid+"\"\n" +
+                "}\n";
     }
 }

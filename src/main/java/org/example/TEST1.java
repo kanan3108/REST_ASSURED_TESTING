@@ -3,6 +3,7 @@ package org.example;
 import data_payload.*;
 import io.restassured.RestAssured;
 import org.testng.Assert;
+import org.testng.asserts.Assertion;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -41,6 +42,15 @@ public class TEST1 {
         if(addresscheck.equalsIgnoreCase(newaddress))
             System.out.println("\n"+"Address updated and fetched are same");
         Assert.assertEquals(addresscheck, newaddress);
+
+        String resp= given().log().all().queryParam("key","qaclick123").header("Content-Type","application/json").
+                body(payload.placeID(extract)).
+                when().delete("maps/api/place/delete/json").then().log().all().
+                assertThat().statusCode(200).extract().response().asString();
+        resp=parsing.parse(resp).getString("status");
+        if(resp.equalsIgnoreCase("OK"))
+            System.out.println("data deleted now");
+        Assert.assertEquals(resp,"OK");
 
 
         }
