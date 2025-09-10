@@ -29,6 +29,18 @@ public class TEST1 {
                 body(payload.update(extract)).when().put("maps/api/place/update/json").then().assertThat().statusCode(200).
                 body("msg",equalTo("Address successfully updated"));
 
+        //get api call
+
+        String newaddress="70 winter walk, USA";
+        String updateaddress = given().log().all().queryParam("key","qaclick123").
+                queryParam("place_id",extract).
+        when().get("maps/api/place/get/json").then().assertThat().statusCode(200).
+        extract().response().asString();
+
+        JsonPath js1 = new JsonPath(updateaddress);
+        String addresscheck=js1.getString("address");
+        if(addresscheck.equalsIgnoreCase(newaddress))
+            System.out.println("\n"+"Address updated and fetched are same");
 
 
         }
