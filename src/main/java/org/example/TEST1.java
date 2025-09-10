@@ -2,7 +2,6 @@ package org.example;
 
 import data_payload.*;
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -20,8 +19,8 @@ public class TEST1 {
         //print response
         System.out.print("----------------------------"+"\n"+response);
 
-        JsonPath js = new JsonPath(response);// parsing json
-        String extract = js.getString("place_id");
+        // parsing json
+        String extract = parsing.parse(response).getString("place_id");
         System.out.println("\n"+"place id = "+extract);
 
         //  update api
@@ -37,8 +36,7 @@ public class TEST1 {
         when().get("maps/api/place/get/json").then().assertThat().statusCode(200).
         extract().response().asString();
 
-        JsonPath js1 = new JsonPath(updateaddress);
-        String addresscheck=js1.getString("address");
+        String addresscheck=parsing.parse(updateaddress).getString("address");
         if(addresscheck.equalsIgnoreCase(newaddress))
             System.out.println("\n"+"Address updated and fetched are same");
 
