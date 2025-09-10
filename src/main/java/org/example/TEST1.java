@@ -25,7 +25,7 @@ public class TEST1 {
                         "  \"website\": \"http://google.com\",\n" +
                         "  \"language\": \"French-IN\"\n" +
                         "}").when().post("maps/api/place/add/json").
-                then().log().all().assertThat().statusCode(2009);
+                then().log().all().assertThat().statusCode(200);
 
 
 
