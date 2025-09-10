@@ -24,6 +24,10 @@ public class TEST1 {
         String extract = js.getString("place_id");
         System.out.println("\n"+"place id = "+extract);
 
+        //  update api
+        given().log().all().queryParam("key","qaclick123").header("Content-Type","application/json").
+                body(payload.update(extract)).when().put("maps/api/place/update/json").then().assertThat().statusCode(200).
+                body("msg",equalTo("Address successfully updated"));
 
 
 
