@@ -18,7 +18,7 @@ public class TEST1 {
                 header("Access-Control-Max-Age","3600").extract().response().asString();
 
         //print response
-        System.out.print("-----------------------------"+"\n"+response);
+        System.out.print("--------&&&---------------------"+"\n"+response);
 
         // parsing json
         String extract = parsing.parse(response).getString("place_id");
